@@ -1,4 +1,4 @@
-(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.GreenAudioPlayer = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.PinkAudioPlayer = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./src/js/main').default;
@@ -25,15 +25,15 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var GreenAudioPlayer = /*#__PURE__*/function () {
-  function GreenAudioPlayer(player, options) {
-    _classCallCheck(this, GreenAudioPlayer);
+var PinkAudioPlayer = /*#__PURE__*/function () {
+  function PinkAudioPlayer(player, options) {
+    _classCallCheck(this, PinkAudioPlayer);
 
     this.audioPlayer = typeof player === 'string' ? document.querySelector(player) : player;
     var opts = options || {};
     var audioElement = this.audioPlayer.innerHTML;
-    this.audioPlayer.classList.add('green-audio-player');
-    this.audioPlayer.innerHTML = GreenAudioPlayer.getTemplate() + audioElement;
+    this.audioPlayer.classList.add('pink-audio-player');
+    this.audioPlayer.innerHTML = PinkAudioPlayer.getTemplate() + audioElement;
     this.isDevice = /ipad|iphone|ipod|android/i.test(window.navigator.userAgent.toLowerCase()) && !window.MSStream;
     this.playPauseBtn = this.audioPlayer.querySelector('.play-pause-btn');
     this.loading = this.audioPlayer.querySelector('.loading');
@@ -118,7 +118,7 @@ var GreenAudioPlayer = /*#__PURE__*/function () {
           self.hasSetAttribute(self.playPauseBtn, 'title', self.labels.pause);
         }).catch(function () {
           // eslint-disable-next-line no-console
-          console.error('Green Audio Player Error: Autoplay has been prevented, because it is not allowed by this browser.');
+          console.error('Pink Audio Player Error: Autoplay has been prevented, because it is not allowed by this browser.');
         });
       }
     }
@@ -129,7 +129,7 @@ var GreenAudioPlayer = /*#__PURE__*/function () {
     }
   }
 
-  _createClass(GreenAudioPlayer, [{
+  _createClass(PinkAudioPlayer, [{
     key: "initEvents",
     value: function initEvents() {
       var self = this;
@@ -186,13 +186,13 @@ var GreenAudioPlayer = /*#__PURE__*/function () {
       this.player.addEventListener('volumechange', this.updateVolume.bind(self));
       this.player.volume = 0.81;
       this.player.addEventListener('loadedmetadata', function () {
-        self.totalTime.textContent = GreenAudioPlayer.formatTime(self.player.duration);
+        self.totalTime.textContent = PinkAudioPlayer.formatTime(self.player.duration);
       });
       this.player.addEventListener('seeking', this.showLoadingIndicator.bind(self));
       this.player.addEventListener('seeked', this.hideLoadingIndicator.bind(self));
       this.player.addEventListener('canplay', this.hideLoadingIndicator.bind(self));
       this.player.addEventListener('ended', function () {
-        GreenAudioPlayer.pausePlayer(self.player, 'ended');
+        PinkAudioPlayer.pausePlayer(self.player, 'ended');
         self.player.currentTime = 0;
         self.playPauseBtn.setAttribute('aria-label', self.labels.play);
         self.hasSetAttribute(self.playPauseBtn, 'title', self.labels.play);
@@ -267,7 +267,7 @@ var GreenAudioPlayer = /*#__PURE__*/function () {
       var percent = current / this.player.duration * 100;
       this.progress.setAttribute('aria-valuenow', percent);
       this.progress.style.width = "".concat(percent, "%");
-      this.currentTime.textContent = GreenAudioPlayer.formatTime(current);
+      this.currentTime.textContent = PinkAudioPlayer.formatTime(current);
     }
   }, {
     key: "updateVolume",
@@ -386,14 +386,14 @@ var GreenAudioPlayer = /*#__PURE__*/function () {
 
       if (this.player.paused) {
         if (this.stopOthersOnPlay) {
-          GreenAudioPlayer.stopOtherPlayers();
+          PinkAudioPlayer.stopOtherPlayers();
         }
 
-        GreenAudioPlayer.playPlayer(this.player);
+        PinkAudioPlayer.playPlayer(this.player);
         this.playPauseBtn.setAttribute('aria-label', this.labels.pause);
         this.hasSetAttribute(this.playPauseBtn, 'title', this.labels.pause);
       } else {
-        GreenAudioPlayer.pausePlayer(this.player, 'toggle');
+        PinkAudioPlayer.pausePlayer(this.player, 'toggle');
         this.playPauseBtn.setAttribute('aria-label', this.labels.play);
         this.hasSetAttribute(this.playPauseBtn, 'title', this.labels.play);
       }
@@ -561,7 +561,7 @@ var GreenAudioPlayer = /*#__PURE__*/function () {
       var players = document.querySelectorAll(options.selector);
       players.forEach(function (player) {
         /* eslint-disable no-new */
-        new GreenAudioPlayer(player, options);
+        new PinkAudioPlayer(player, options);
       });
     }
   }, {
@@ -593,18 +593,18 @@ var GreenAudioPlayer = /*#__PURE__*/function () {
   }, {
     key: "stopOtherPlayers",
     value: function stopOtherPlayers() {
-      var players = document.querySelectorAll('.green-audio-player audio');
+      var players = document.querySelectorAll('.pink-audio-player audio');
 
       for (var i = 0; i < players.length; i++) {
-        GreenAudioPlayer.pausePlayer(players[i]);
+        PinkAudioPlayer.pausePlayer(players[i]);
       }
     }
   }]);
 
-  return GreenAudioPlayer;
+  return PinkAudioPlayer;
 }();
 
-var _default = GreenAudioPlayer;
+var _default = PinkAudioPlayer;
 exports.default = _default;
 
 },{}]},{},[1])(1)
