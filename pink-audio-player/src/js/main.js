@@ -1,11 +1,11 @@
-class GreenAudioPlayer {
+class PinkAudioPlayer {
     constructor(player, options) {
         this.audioPlayer = typeof player === 'string' ? document.querySelector(player) : player;
         const opts = options || {};
 
         const audioElement = this.audioPlayer.innerHTML;
-        this.audioPlayer.classList.add('green-audio-player');
-        this.audioPlayer.innerHTML = GreenAudioPlayer.getTemplate() + audioElement;
+        this.audioPlayer.classList.add('pink-audio-player');
+        this.audioPlayer.innerHTML = PinkAudioPlayer.getTemplate() + audioElement;
 
         this.isDevice = /ipad|iphone|ipod|android/i.test(window.navigator.userAgent.toLowerCase()) && !window.MSStream;
         this.playPauseBtn = this.audioPlayer.querySelector('.play-pause-btn');
@@ -90,7 +90,7 @@ class GreenAudioPlayer {
                     self.hasSetAttribute(self.playPauseBtn, 'title', self.labels.pause);
                 }).catch(() => {
                     // eslint-disable-next-line no-console
-                    console.error('Green Audio Player Error: Autoplay has been prevented, because it is not allowed by this browser.');
+                    console.error('Pink Audio Player Error: Autoplay has been prevented, because it is not allowed by this browser.');
                 });
             }
         }
@@ -105,7 +105,7 @@ class GreenAudioPlayer {
 
         players.forEach((player) => {
             /* eslint-disable no-new */
-            new GreenAudioPlayer(player, options);
+            new PinkAudioPlayer(player, options);
         });
     }
 
@@ -216,13 +216,13 @@ class GreenAudioPlayer {
         this.player.addEventListener('volumechange', this.updateVolume.bind(self));
         this.player.volume = 0.81;
         this.player.addEventListener('loadedmetadata', () => {
-            self.totalTime.textContent = GreenAudioPlayer.formatTime(self.player.duration);
+            self.totalTime.textContent = PinkAudioPlayer.formatTime(self.player.duration);
         });
         this.player.addEventListener('seeking', this.showLoadingIndicator.bind(self));
         this.player.addEventListener('seeked', this.hideLoadingIndicator.bind(self));
         this.player.addEventListener('canplay', this.hideLoadingIndicator.bind(self));
         this.player.addEventListener('ended', () => {
-            GreenAudioPlayer.pausePlayer(self.player, 'ended');
+            PinkAudioPlayer.pausePlayer(self.player, 'ended');
             self.player.currentTime = 0;
             self.playPauseBtn.setAttribute('aria-label', self.labels.play);
             self.hasSetAttribute(self.playPauseBtn, 'title', self.labels.play);
@@ -293,7 +293,7 @@ class GreenAudioPlayer {
         this.progress.setAttribute('aria-valuenow', percent);
         this.progress.style.width = `${percent}%`;
 
-        this.currentTime.textContent = GreenAudioPlayer.formatTime(current);
+        this.currentTime.textContent = PinkAudioPlayer.formatTime(current);
     }
 
     updateVolume() {
@@ -400,13 +400,13 @@ class GreenAudioPlayer {
         this.preloadNone();
         if (this.player.paused) {
             if (this.stopOthersOnPlay) {
-                GreenAudioPlayer.stopOtherPlayers();
+                PinkAudioPlayer.stopOtherPlayers();
             }
-            GreenAudioPlayer.playPlayer(this.player);
+            PinkAudioPlayer.playPlayer(this.player);
             this.playPauseBtn.setAttribute('aria-label', this.labels.pause);
             this.hasSetAttribute(this.playPauseBtn, 'title', this.labels.pause);
         } else {
-            GreenAudioPlayer.pausePlayer(this.player, 'toggle');
+            PinkAudioPlayer.pausePlayer(this.player, 'toggle');
             this.playPauseBtn.setAttribute('aria-label', this.labels.play);
             this.hasSetAttribute(this.playPauseBtn, 'title', this.labels.play);
         }
@@ -520,10 +520,10 @@ class GreenAudioPlayer {
     }
 
     static stopOtherPlayers() {
-        const players = document.querySelectorAll('.green-audio-player audio');
+        const players = document.querySelectorAll('.pink-audio-player audio');
 
         for (let i = 0; i < players.length; i++) {
-            GreenAudioPlayer.pausePlayer(players[i]);
+            PinkAudioPlayer.pausePlayer(players[i]);
         }
     }
 
@@ -562,4 +562,4 @@ class GreenAudioPlayer {
     }
 }
 
-export default GreenAudioPlayer;
+export default PinkAudioPlayer;
