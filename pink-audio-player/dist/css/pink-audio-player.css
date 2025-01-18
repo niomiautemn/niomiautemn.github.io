@@ -2,7 +2,9 @@
   from {
     transform: rotateZ(0deg); }
   to {
-    transform: rotateZ(90deg); } }
+    transform: rotateZ(90deg); } 
+  to {
+    transform: rotateZ(180deg); } }
 
 .pink-audio-player {
   width: 400px;
