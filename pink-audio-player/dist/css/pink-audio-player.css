@@ -38,7 +38,7 @@
       border: 2px solid #b0b0b0;
       border-right-color: rgba(0, 0, 0, 0);
       border-radius: 50%;
-      animation: rotateZ(90deg) 0.5s linear infinite; }
+      animation: spin 0.5s linear infinite; }
     .pink-audio-player .holder .play-pause-btn {
       visibility: hidden;
       cursor: pointer;
