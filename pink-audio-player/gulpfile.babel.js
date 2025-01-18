@@ -21,7 +21,7 @@ const styles = () => {
     return (
         gulp.src(['./src/scss/main.scss']) // add multiple sass files
             .pipe(sass().on('error', sass.logError))
-            .pipe(rename({ basename: 'green-audio-player' }))
+            .pipe(rename({ basename: 'pink-audio-player' }))
             .pipe(gulp.dest('./dist/css'))
             .pipe(postcss(plugins))
             .pipe(rename({ suffix: '.min' }))
@@ -32,10 +32,10 @@ const styles = () => {
 
 const scripts = () => browserify({
     entries: './index.js',
-    standalone: 'GreenAudioPlayer'
+    standalone: 'PinkAudioPlayer'
 }).transform(babelify, { presets: ['@babel/preset-env'] })
     .bundle()
-    .pipe(source('green-audio-player.js')) // library-name.js
+    .pipe(source('pink-audio-player.js')) // library-name.js
     .pipe(gulp.dest('dist/js'))
     .pipe(streamify(uglify()))
     .pipe(rename({ suffix: '.min' }))
