@@ -117,7 +117,7 @@ class GreenAudioPlayer {
                 </div>
 
                 <div class="play-pause-btn" aria-label="Play" role="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" viewBox="0 0 18 24">
+                    <svg xmlns="" width="18" height="24" viewBox="0 0 18 24">
                         <path fill="#566574" fill-rule="evenodd" d="M18 12L0 24V0" class="play-pause-btn__icon"/>
                     </svg>
                 </div>
